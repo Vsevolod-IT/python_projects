@@ -2,31 +2,34 @@
 
 from random import randint as rand
 
-user = input('please enter your name--> ')
-comp_number = rand(1, 100)
+user_name,attemps,min_figer,max_figer = map(str, input('\tThis is game \' guess number\''
+                                              'please enter your name,\n\thow many attemps do you want,'
+                                              'min figer, max figer \n\t(each one from /) --> ').split())
 
-again = input('Do you wanna start the game? \n yes or no --> ')
+attemps,min_figer,max_figer = int(attemps), int(min_figer), int(max_figer)
+
+comp_number = rand(min_figer, max_figer)
+again = 'yes'
 print(comp_number)
 
-
 #game block
-greeting_user = print('\t Hello, %s! You have to choise the number witch i made, \n \t from 1 to 100'
-                      ' you\'ll have 5  attemps ' % user)
+greeting_user = print('\t So, %s You have to choise the number witch i made, \n \t from %d to %d'
+                      ' you\'ll have %d  attemps ' % (user_name,min_figer, max_figer, attemps ))
 
 while again == 'yes':
-    for attemps in range(5):
-        answer_user = int(input('--number-->'))
-        if answer_user == comp_number:
-            again = input('congratulations you\'ve won \n play again(yes or no) --> ')
-            continue
-        elif answer_user < comp_number:
-            print('less than it is')
-        elif answer_user > comp_number:
-            print('more than it is')
-        else:
-            again = input('game again? --> ')
-            continue
+    for i in range(attemps):
+        try:
+            answer_user = int(input('--number-->'))
+            if answer_user == comp_number:
+                print('\t  congratulations you\'ve won ')
+                break
+            elif answer_user < comp_number:
+                print('less than it is')
+            elif answer_user > comp_number:
+                print('more than it is')
+        except:
+            break
     again = input ('play again? yes - no -->')
 
 
-print('Thank\'s and bye')
+print('\nThank\'s and bye')
