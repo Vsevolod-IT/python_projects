@@ -2,7 +2,7 @@
 part = {''}
 
 # create screen
-a = [['.'] * 15 for i in range(10)]
+a = [[' '] * 15 for i in range(10)]
 
 # create vertical
 for line,colone in enumerate(a):
@@ -23,14 +23,14 @@ for line,colone in enumerate(a):
     if (1 < line < 4):
         for colone,i in enumerate(colone):
             if colone == 7:
-                 a[line][colone] = '|'
+                 a[line][colone] = ' |'
 
 # block create man
 for line,colone in enumerate(a):
     if line == 4:
         for colone,i in enumerate(colone):
             if colone == 7:
-                 a[line][colone] = '@'
+                 a[line][colone] = ' @'
 
 
 for line,colone in enumerate(a):
@@ -43,7 +43,7 @@ for line,colone in enumerate(a):
     if line == 6:
         for colone,i in enumerate(colone):
             if colone == 7:
-                 a[line][colone] = '/\\'
+                 a[line][colone] = ' /\\'
 # view screen
 for i in a:
     print(*i)
