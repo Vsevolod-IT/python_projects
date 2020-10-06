@@ -1,5 +1,5 @@
 
-part = {''}
+
 
 # create screen
 a = [[' '] * 15 for i in range(10)]
@@ -37,7 +37,7 @@ for line,colone in enumerate(a):
     if line == 5:
         for colone,i in enumerate(colone):
             if colone == 7:
-                 a[line][colone] = '/|\\'
+                 a[line][colone] = '/()\\'
 
 for line,colone in enumerate(a):
     if line == 6:
