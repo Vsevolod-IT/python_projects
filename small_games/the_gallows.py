@@ -1,59 +1,21 @@
 
-
-def create_field(symbol):
-    ''' return multidimensional list filled in with the entered character'''
-    return [[symbol] * 15 for i in range(10)]
-
-
-def create_vertical(field: list, num_column: int, quantity: int, symbol):
-
-    '''the function changes
-    --> playing field (list)
-    --> globals variables - count_column, count_string (these are counters
-        for the next call func)
-    the function accepts 4 parametrs, the function draws vertically any symbols
-    param: field - it's playing field type list,
-    num_column - number of the column where the symbol will be drawn ,
-    quantity - how many reps will be, symbol - symbols (str or int) that will be drawn'''
-
-    x,y = quantity-quantity,quantity+1
-    global count_string
-    count_string = x + 1
-    global count_column
-    count_column = num_column
+def create_vertical(field,num_column, start, stop, symbol):
     for line, colone in enumerate(field):
-        if (x < line < y):
+        if (start < line < stop):
             for colone, i in enumerate(colone):
                 if colone == num_column:
                     field[line][colone] = symbol
-    return field, count_column, count_string
+    return field
 
-def create_horizontal(field: list, num_line: int, num_column, quantity: int, symbol):
 
-    '''the function changes
-    --> playing field (list)
-    --> globals variables - count_column, count_string (these are counters
-        for the next call func)
-    the function accepts 4 parametrs, the function draws horizontally any symbols
-    param: field - it's playing field type list,
-    num_line - number of the line where the symbol will be drawn,
-    num_column - number of the column where the symbol will be drawn ,
-    quantity - how many reps will be, symbol - symbols (str or int) that will be drawn'''
 
-    global count_column
-    global count_string
-    count_string = num_line
-    y = (num_column + 1) + quantity
-    for line,colone in enumerate(field):
+def create_horizontal(field, num_line, start, stop, symbol):
+    for line, colone in enumerate(field):
         if line == num_line:
-            for colone,i in enumerate(colone):
-                if (num_column < colone < y):
-                     field[line][colone] = symbol
-    count_column = y
-    return field, count_column, count_string
-
-
-
+            for colone, i in enumerate(colone):
+                if (start < colone < stop):
+                    field[line][colone] = symbol
+    return field
 
 def display_screen(field):
     ''' output the  multidimensional list'''
@@ -61,18 +23,19 @@ def display_screen(field):
         print(*i)
     return field
 
+def create_field(symbol):
+    ''' return multidimensional list filled in with the entered character'''
+    return [[symbol] * 15 for i in range(10)]
 
-word_list = ('Accept	Guess Achieve	Harass Add	Hate Admire	Hear Admit	Help Adopt	Hit Advise	Hope'
-             'Agree	Identify Allow	Interrupt Announce	Introduce Appreciate	Irritate Approve	Jump Argue	Keep'
-             'Arrive	Kick Ask	Kiss Assist	Laugh Attack	Learn Bake	Leave Bathe	Lend'.split())
+pl = create_field(' ')
+create_vertical(pl,1,0,9,'X')
+create_horizontal(pl,1,1,6,'=')
+create_vertical(pl,5,1,4,'|')
+create_vertical(pl,5,3,5,'O')
+create_vertical(pl,5,4,6,'()')
+create_vertical(pl,5,5,7,'/\\')
 
+create_horizontal(pl, 9, 2, 8, '[ ]')
+display_screen(pl)
 
-count_column = 0
-count_string = 0
-
-game = create_field('.')
-create_vertical(game, 2, 8,'@')
-create_horizontal(game,count_string,count_column,5,'=')
-display_screen(game)
-print(count_string ,count_column)
 
