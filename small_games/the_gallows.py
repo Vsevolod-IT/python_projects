@@ -18,7 +18,7 @@ def create_vertical(field: list, num_column: int, quantity: int, symbol):
 
     x,y = quantity-quantity,quantity+1
     global count_string
-    count_string = x
+    count_string = x + 1
     global count_column
     count_column = num_column
     for line, colone in enumerate(field):
@@ -67,5 +67,12 @@ word_list = ('Accept	Guess Achieve	Harass Add	Hate Admire	Hear Admit	Help Adopt	
              'Arrive	Kick Ask	Kiss Assist	Laugh Attack	Learn Bake	Leave Bathe	Lend'.split())
 
 
-    
+count_column = 0
+count_string = 0
+
+game = create_field('.')
+create_vertical(game, 2, 8,'@')
+create_horizontal(game,count_string,count_column,5,'=')
+display_screen(game)
+print(count_string ,count_column)
 
