@@ -1,3 +1,8 @@
+from random import choice
+
+def create_field(symbol):
+    ''' return multidimensional list filled in with the entered character'''
+    return [[symbol] * 15 for i in range(10)]
 
 def create_vertical(field,num_column, start, stop, symbol):
     for line, colone in enumerate(field):
@@ -23,19 +28,47 @@ def display_screen(field):
         print(*i)
     return field
 
-def create_field(symbol):
-    ''' return multidimensional list filled in with the entered character'''
-    return [[symbol] * 15 for i in range(10)]
 
+
+def draw_gallow(count=[]):
+    if not count:
+        count.append(1)
+    check = count[-1]
+    if check == 1:
+        create_vertical(pl, 1, 0, 9, 'X')
+    elif check == 2:
+        create_horizontal(pl,1,1,6,'=')
+    elif check ==3:
+        create_vertical(pl,5,1,4,'|')
+    elif check ==4:
+        create_vertical(pl,5,3,5,'O')
+    else:
+        create_vertical(pl,5,4,6,'()')
+    count[-1] += 1
+
+def check_letter(word):
+    letter = input('enter letter ->').lower()
+    if letter in word:
+        ind = word.index(letter)
+        pl[9][ind] = letter
+    elif letter not in word:
+        print('no this letter')
+        entered_letter.append(letter)
+        draw_gallow()
+    elif letter in entered_letter:
+        print('already entered letter')
+    else:
+        print('enter only latin letter')
+    return letter
+
+
+words = 'Absher absorb Abston absurd acacia acarid accede accent accept access accord accost accrue ' \
+        'Ashman ashore Ashton Askins batoon Batres Batson batten Batten batter battle Batton Baucom ' \
+        'Bauder cuckoo cuddle cudgel Cuevas Cullen Culler Culley Cullum Culver Cumbie cunted cupful'.split(' ')
+
+word = (choice(words))
 pl = create_field(' ')
-create_vertical(pl,1,0,9,'X')
-create_horizontal(pl,1,1,6,'=')
-create_vertical(pl,5,1,4,'|')
-create_vertical(pl,5,3,5,'O')
-create_vertical(pl,5,4,6,'()')
-create_vertical(pl,5,5,7,'/\\')
-
-create_horizontal(pl, 9, 2, 8, '[ ]')
+create_horizontal(pl, 9, -1, 6, '[ ]')
 display_screen(pl)
 
 
