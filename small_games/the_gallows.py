@@ -62,13 +62,24 @@ def check_letter(word):
     return letter
 
 
-words = 'Absher absorb Abston absurd acacia acarid accede accent accept access accord accost accrue ' \
-        'Ashman ashore Ashton Askins batoon Batres Batson batten Batten batter battle Batton Baucom ' \
+words = 'absher absorb abston absurd acacia acarid accede accent accept access accord accost accrue ' \
+        'ashman ashore ashton Askins batoon Batres Batson batten Batten batter battle Batton Baucom ' \
         'Bauder cuckoo cuddle cudgel Cuevas Cullen Culler Culley Cullum Culver Cumbie cunted cupful'.split(' ')
 
-word = (choice(words))
-pl = create_field(' ')
-create_horizontal(pl, 9, -1, 6, '[ ]')
-display_screen(pl)
+play_again = 'yes'
+
+while play_again == 'yes':
+
+    entered_letter = []
+    word = (choice(words))
+    word = word.lower()
+    print(word)
+    pl = create_field(' ')
+    create_horizontal(pl, 9, -1, 6, '[ ]')
+    display_screen(pl)
+    for _ in enumerate(word):
+        check_letter(word)
+    play_again = input('play again -->')
+
 
 
