@@ -1,10 +1,16 @@
 from random import choice
 
 def create_field(symbol):
-    ''' return multidimensional list filled in with the entered character'''
+    '''
+    return multidimensional list any count rows and columns filled in with the entered character or integer
+    '''
     return [[symbol] * 15 for i in range(10)]
 
-def create_vertical(field,num_column, start, stop, symbol):
+def create_vertical(field: list, num_column: int, start: int, stop: int, symbol):
+    '''
+    func inserts the characters vertically into multidimensional list.
+    Param: field - multidimensional list, num_column - by x, start/stop - index (slice of list), symbol-str or int
+    '''
     for line, colone in enumerate(field):
         if (start < line < stop):
             for colone, i in enumerate(colone):
@@ -16,12 +22,18 @@ def create_vertical(field,num_column, start, stop, symbol):
 
 
 def create_horizontal(field, num_line, start, stop, symbol):
+    '''
+    func inserts the characters horizpntal into multidimensional list.
+    param : field - multidimensional list, num_line - by y, start/stop - index (slice of list), symbol-str or int
+
+    '''
     for line, colone in enumerate(field):
         if line == num_line:
             for colone, i in enumerate(colone):
                 if (start < colone < stop):
                     field[line][colone] = symbol
     return field
+
 
 def display_screen(field):
     ''' output the  multidimensional list'''
@@ -80,14 +92,16 @@ def check_win():
         return flag
 
 
-
+# words for making
 words = 'absher absorb abston absurd acacia acarid accede accent accept access accord accost accrue ' \
         'ashman ashore ashton Askins batoon Batres Batson batten Batten batter battle Batton Baucom ' \
         'Bauder cuckoo cuddle cudgel Cuevas Cullen Culler Culley Cullum Culver Cumbie cunted cupful'.split(' ')
 
+# play_again and flag it's  bool for  2 circle while
 play_again = 'yes'
 flag = True
 
+# game block
 while play_again == 'yes':
 
     entered_letter = []
