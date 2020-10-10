@@ -10,6 +10,7 @@ def create_vertical(field,num_column, start, stop, symbol):
             for colone, i in enumerate(colone):
                 if colone == num_column:
                     field[line][colone] = symbol
+
     return field
 
 
@@ -31,6 +32,7 @@ def display_screen(field):
 
 
 def draw_gallow(count=[]):
+    global flag
     if not count:
         count.append(1)
     check = count[-1]
@@ -42,24 +44,41 @@ def draw_gallow(count=[]):
         create_vertical(pl,5,1,4,'|')
     elif check ==4:
         create_vertical(pl,5,3,5,'O')
-    else:
+    elif check == 5:
         create_vertical(pl,5,4,6,'()')
+    elif check == 6:
+        create_vertical(pl, 5, 5, 7, '/\\')
+    else:
+        flag = False
+        return flag
     count[-1] += 1
+
 
 def check_letter(word):
     letter = input('enter letter ->').lower()
     if letter in word:
         ind = word.index(letter)
         pl[9][ind] = letter
+    elif letter in entered_letter:
+        print('already entered letter')
+        draw_gallow()
     elif letter not in word:
         print('no this letter')
         entered_letter.append(letter)
         draw_gallow()
-    elif letter in entered_letter:
-        print('already entered letter')
     else:
         print('enter only latin letter')
     return letter
+
+def check_win():
+    global flag
+    word_user = pl[9][0:6]
+    word_user = ''.join(word_user)
+    if word == word_user:
+        print('you won')
+        flag = False
+        return flag
+
 
 
 words = 'absher absorb abston absurd acacia acarid accede accent accept access accord accost accrue ' \
@@ -67,6 +86,7 @@ words = 'absher absorb abston absurd acacia acarid accede accent accept access a
         'Bauder cuckoo cuddle cudgel Cuevas Cullen Culler Culley Cullum Culver Cumbie cunted cupful'.split(' ')
 
 play_again = 'yes'
+flag = True
 
 while play_again == 'yes':
 
@@ -77,8 +97,10 @@ while play_again == 'yes':
     pl = create_field(' ')
     create_horizontal(pl, 9, -1, 6, '[ ]')
     display_screen(pl)
-    for _ in enumerate(word):
+    while flag:
         check_letter(word)
+        check_win()
+        display_screen(pl)
     play_again = input('play again -->')
 
 
