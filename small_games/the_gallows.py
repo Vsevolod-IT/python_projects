@@ -25,8 +25,7 @@ def create_horizontal(field, num_line, start, stop, symbol):
     '''
     func inserts the characters horizpntal into multidimensional list.
     param : field - multidimensional list, num_line - by y, start/stop - index (slice of list), symbol-str or int
-
-    '''
+     '''
     for line, colone in enumerate(field):
         if line == num_line:
             for colone, i in enumerate(colone):
@@ -44,6 +43,10 @@ def display_screen(field):
 
 
 def draw_gallow(count=[]):
+    '''
+    the function draws a gallows at pre-defined coordinates
+    param: count as counter for calling
+    '''
     global flag
     if not count:
         count.append(1)
@@ -67,6 +70,12 @@ def draw_gallow(count=[]):
 
 
 def check_letter(word):
+    '''
+    the function takes the selected system call requests a letter from the user and checks
+    if there's a letter in word, if not it launches dsraw_gallon and adds the letter to the list letters you entered,
+    if Yes then it prints the letter in the playing field
+    param: word - word from list words
+    '''
     letter = input('enter letter ->').lower()
     if letter in word:
         ind = word.index(letter)
@@ -83,6 +92,9 @@ def check_letter(word):
     return letter
 
 def check_win():
+    '''
+    checks the user's word if it is correct stops the game loop
+    '''
     global flag
     word_user = pl[9][0:6]
     word_user = ''.join(word_user)
